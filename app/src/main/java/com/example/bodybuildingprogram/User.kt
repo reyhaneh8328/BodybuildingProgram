@@ -6,19 +6,63 @@ import androidx.room.PrimaryKey
 
 
 @Entity(tableName = "users")
-data class User (
+ class User
+{
     @PrimaryKey(autoGenerate = true)
-    private val userId: Int = 0,
+    private var userId: Int = 0
     @ColumnInfo(name = "first_name")
-    private val firstName: String,
+    private var firstName: String = ""
     @ColumnInfo(name = "last_name")
-    private val lastName: String,
+    private var lastName: String = ""
     @ColumnInfo(name = "age")
-    private val age: Int,
+    private var age: Int = 0
     @ColumnInfo(name = "height")
-    private val height: Int,
+    private var height: Int = 0
     @ColumnInfo(name = "weight")
-    private val weight: Int,
+    private var weight: Int = 0
     @ColumnInfo(name = "blood_type")
-    private val bloodType: String
-)
+    private var bloodType: String = ""
+
+    fun getUserId() : Int{
+        return this.userId
+    }
+    fun setUserId(userId: Int){
+        this.userId = userId
+    }
+    fun getFirstName(): String{
+        return this.firstName
+    }
+    fun setFirstName(firstName: String){
+        this.firstName = firstName
+    }
+    fun getLastName(): String{
+        return this.lastName
+    }
+    fun setLastName(lastName: String){
+        this.lastName = lastName
+    }
+    fun getAge(): Int{
+        return this.age
+    }
+    fun setAge(age: Int){
+        this.age = age
+    }
+    fun getHeight(): Int{
+        return this.height
+    }
+    fun setHeight(height: Int){
+        this.height = height
+    }
+    fun getWeight(): Int{
+        return this.weight
+    }
+    fun setWeight(weight: Int){
+        this.weight = weight
+    }
+    fun getBloodType(): String{
+        return this.bloodType
+    }
+    fun setBloodType(bloodType: String){
+        this.bloodType = bloodType
+    }
+}
