@@ -23,6 +23,22 @@ import androidx.room.PrimaryKey
     @ColumnInfo(name = "blood_type")
     private var bloodType: String = ""
 
+    constructor(
+        firstName: String,
+        lastName: String,
+        age: Int,
+        height: Int,
+        weight: Int,
+        bloodType: String
+    ) {
+        this.firstName = firstName
+        this.lastName = lastName
+        this.age = age
+        this.height = height
+        this.weight = weight
+        this.bloodType = bloodType
+    }
+
     fun getUserId() : Int{
         return this.userId
     }

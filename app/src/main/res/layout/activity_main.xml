@@ -38,7 +38,7 @@
         android:textColorHint="@color/gray01"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categoriesRv"
+        android:id="@+id/usersRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/addBtn"

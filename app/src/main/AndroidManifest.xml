@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BodybuildingProgram"
         tools:targetApi="34">
+        <activity
+            android:name=".SupplementsAndVitaminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PlanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserdashboardActivity"
+            android:exported="false" />
         <activity
             android:name=".AddUserActivity"
             android:exported="false" />
