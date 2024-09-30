@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.example.bodybuildingprogram.databinding.ActivitySupplementsAndVitaminBinding
+import com.example.bodybuildingprogram.databinding.DialogNamepdfBinding
 import com.example.bodybuildingprogram.databinding.DialogTextplanAddBinding
 
 class SupplementsAndVitaminActivity : AppCompatActivity() {
@@ -35,6 +36,33 @@ class SupplementsAndVitaminActivity : AppCompatActivity() {
         binding.deleteBtn.setOnClickListener {
             deleteTextPlan()
         }
+        binding.receivePdfBtn.setOnClickListener {
+            generatePdf()
+        }
+    }
+
+    private fun generatePdf() {
+        val getNamePdf = DialogNamepdfBinding.inflate(LayoutInflater.from(this))
+        val builder = AlertDialog.Builder(this, R.style.CustomDialog)
+        builder.setView(getNamePdf.root)
+
+        val alertDialog = builder.create()
+        alertDialog.show()
+        alertDialog.setCanceledOnTouchOutside(false)
+
+        getNamePdf.backBtn.setOnClickListener { alertDialog.dismiss() }
+
+        getNamePdf.submitBtn.setOnClickListener {
+            val namePdf = getNamePdf.nameEt.text.toString().trim()
+            if (namePdf.isEmpty()) {
+                Toast.makeText(this, "نام pdf را وارد کنید ...", Toast.LENGTH_SHORT).show()
+            }else{
+                alertDialog.dismiss()
+                val relativeLayout = binding.pdfRl
+                val pdfGenerator = PdfGenerator(this)
+                pdfGenerator.createPDFFromView(relativeLayout,namePdf)
+            }
+        }
     }
 
     private fun deleteTextPlan() {
@@ -55,7 +83,6 @@ class SupplementsAndVitaminActivity : AppCompatActivity() {
                 }
                 .show()
                 .setCanceledOnTouchOutside(false)
-
         }
     }
 

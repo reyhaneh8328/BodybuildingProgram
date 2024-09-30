@@ -29,6 +29,7 @@
             android:textStyle="bold" />
     </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/pdfRl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbarRl"
@@ -38,6 +39,7 @@
             android:id="@+id/profileRl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="30dp"
             android:background="@drawable/shape_rect01">
             <TextView
                 android:id="@+id/fullNameTv"
