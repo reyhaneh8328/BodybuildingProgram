@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadUsers() {
-        val userViewModel = UserViewModel(DatabaseConnection.getInstance(this).userDao())
+        val userViewModel = UserViewModel(databaseConnection.userDao())
         userViewModel.getAllUsers().observe(this,Observer{userList->
 
             adapterUser = AdapterUser(this@MainActivity, userList as ArrayList<User>)
