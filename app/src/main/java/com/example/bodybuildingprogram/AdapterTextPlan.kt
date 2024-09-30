@@ -1,12 +1,15 @@
 package com.example.bodybuildingprogram
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bodybuildingprogram.databinding.RowTextplanBinding
+import kotlin.reflect.typeOf
 
 class AdapterTextPlan: RecyclerView.Adapter<AdapterTextPlan.HolderTextPlan> {
     private val context: Context
@@ -39,5 +42,22 @@ class AdapterTextPlan: RecyclerView.Adapter<AdapterTextPlan.HolderTextPlan> {
 
         holder.nameSOVTv.text = model.getName()
         holder.descriptionTv.text = model.getDescription()
+
+        holder.itemView.setOnLongClickListener { modelText->
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("حذف")
+                .setMessage("آیا مطمئن هستید که می خواهید این مورد را حذف کنید؟")
+                .setPositiveButton("تایید") { a, d ->
+                    textArrayList.removeAt(position)
+                    notifyDataSetChanged()
+                    Toast.makeText(context, "حذف شد", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("لغو") { a, d ->
+                    a.dismiss()
+                }
+                .show()
+                .setCanceledOnTouchOutside(false)
+            true
+        }
     }
 }

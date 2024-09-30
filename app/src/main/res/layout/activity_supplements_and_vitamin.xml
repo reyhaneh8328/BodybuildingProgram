@@ -199,22 +199,14 @@
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
         <Button
-            android:id="@+id/deleteBtn"
-            android:layout_width="0dp"
-            android:layout_height="?actionBarSize"
-            android:layout_weight="1"
-            android:text="حذف"
-            android:textSize="20sp"
-            android:layout_marginEnd="2dp"/>
-        <Button
             android:id="@+id/receivePdfBtn"
             android:layout_width="0dp"
             android:layout_height="?actionBarSize"
             android:layout_weight="1"
             android:text="دریافت pdf"
-            android:textSize="18sp"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="2dp"/>
+            android:textSize="20sp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"/>
         <Button
             android:id="@+id/addBtn"
             android:layout_width="0dp"
@@ -222,6 +214,7 @@
             android:layout_weight="1"
             android:text="اضافه"
             android:textSize="20sp"
-            android:layout_marginStart="2dp"/>
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"/>
     </LinearLayout>
 </RelativeLayout>

@@ -33,9 +33,6 @@ class SupplementsAndVitaminActivity : AppCompatActivity() {
         binding.addBtn.setOnClickListener {
             addTextPlan()
         }
-        binding.deleteBtn.setOnClickListener {
-            deleteTextPlan()
-        }
         binding.receivePdfBtn.setOnClickListener {
             generatePdf()
         }
@@ -62,27 +59,6 @@ class SupplementsAndVitaminActivity : AppCompatActivity() {
                 val pdfGenerator = PdfGenerator(this)
                 pdfGenerator.createPDFFromView(relativeLayout,namePdf)
             }
-        }
-    }
-
-    private fun deleteTextPlan() {
-        if (textPlanArrayList.size == 0){
-            Toast.makeText(this, "موردی وجود ندارد", Toast.LENGTH_SHORT).show()
-        }
-        else {
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("حذف")
-                .setMessage("آیا مطمئن هستید که می خواهید آخرین مورد را حذف کنید؟")
-                .setPositiveButton("تایید") { a, d ->
-                    textPlanArrayList.removeLast()
-                    adapterTextPlan.notifyDataSetChanged()
-                    Toast.makeText(this, "حذف شد", Toast.LENGTH_SHORT).show()
-                }
-                .setNegativeButton("لغو") { a, d ->
-                    a.dismiss()
-                }
-                .show()
-                .setCanceledOnTouchOutside(false)
         }
     }
 
