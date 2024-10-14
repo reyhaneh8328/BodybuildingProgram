@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="BlueGray300">#B0BEC5</color>
+    <color name="LightGreen500">#8BC34A</color>
+    <color name="Lime900">#827717</color>
+    <color name="gray01">#c5c5c5</color>
+    <color name="gray03">#EDEDED</color>
+    <color name="gray04">#FBFBFB</color>
+    <color name="pink02">#E91E63</color>
+    <color name="pink03">#E45F8C</color>
+    <color name="pink01">#8F1E45</color>
+    <color name="skk">#77637C</color>
+    <color name="kdkd">#B38192</color>
+    <color name="jdjd">#AF807C</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
