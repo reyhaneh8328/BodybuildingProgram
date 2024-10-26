@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray03"
+    android:background="@color/gray01"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -12,15 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@drawable/shape_toolbar01">
+
         <TextView
             android:id="@+id/titleTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_centerInParent="true"
+            android:layout_marginTop="8dp"
             android:text="لیست ورزشکاران"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textStyle="bold" />
     </RelativeLayout>
     <!--    Search  -->
     <EditText
@@ -35,7 +36,7 @@
         android:drawableStart="@drawable/ic_search_gray"
         android:hint="جستجو"
         android:padding="10dp"
-        android:textColorHint="@color/gray01"/>
+        android:textColorHint="@color/gray01" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/usersRv"
@@ -54,16 +55,16 @@
         android:id="@+id/addBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/Lime900"
-        android:minHeight="50dp"
         android:layout_alignParentBottom="true"
-        android:text="ورزشکار جدید"
-        android:textAllCaps="false"
-        android:drawableEnd="@drawable/ic_person_add_24"
-        android:drawablePadding="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:textColor="@color/white"/>
+        android:backgroundTint="@color/black"
+        android:drawableEnd="@drawable/ic_person_add_24"
+        android:drawablePadding="10dp"
+        android:minHeight="50dp"
+        android:text="ورزشکار جدید"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back01"
+    android:background="@drawable/back03"
     tools:context=".SplashActivity">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="AAG"
-        android:textSize="30sp"
-        android:fontFamily="sans-serif-condensed"
         android:layout_gravity="bottom|left"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="AAG"
+        android:textSize="30sp" />
 </FrameLayout>

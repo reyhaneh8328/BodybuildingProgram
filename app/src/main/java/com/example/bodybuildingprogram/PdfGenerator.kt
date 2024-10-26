@@ -3,7 +3,9 @@ package com.example.bodybuildingprogram
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
+//import android.graphics.pdf.PdfDocument
 import android.os.Environment
+import android.renderscript.ScriptGroup
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -20,30 +22,26 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 
-import com.itextpdf.io.image.ImageDataFactory
+
+import android.view.*
+import android.widget.*
 import com.itextpdf.kernel.geom.PageSize
 import com.itextpdf.kernel.pdf.PdfDocument
 import com.itextpdf.kernel.pdf.PdfWriter
 import com.itextpdf.layout.Document
 import com.itextpdf.layout.element.Image
+import com.itextpdf.layout.property.UnitValue
 import java.io.ByteArrayOutputStream
 
 
 class PdfGenerator(private val context: Context) {
 
 
-
-    fun Bitmap.toByteArray(): ByteArray {
-        val stream = ByteArrayOutputStream()
-        this.compress(Bitmap.CompressFormat.PNG, 100, stream)
-        return stream.toByteArray()
-    }
-
-    fun createMultiPagePdfFromRelativeLayoutWithRecyclerView(
+    fun createMultiPagePdfWithoutGap(
         relativeLayout: RelativeLayout,
         recyclerView: RecyclerView,
         fileName: String,
-        binding: ActivityPlanBinding
+        profileRl : RelativeLayout
     ) {
         relativeLayout.post {
             val viewWidth = recyclerView.width
@@ -53,7 +51,7 @@ class PdfGenerator(private val context: Context) {
                     RelativeLayout.LayoutParams.MATCH_PARENT,
                     RelativeLayout.LayoutParams.WRAP_CONTENT
                 ).apply {
-                    addRule(RelativeLayout.BELOW, binding.profileRl.id)
+                    addRule(RelativeLayout.BELOW, profileRl.id)
                 }
             }
 
@@ -95,54 +93,80 @@ class PdfGenerator(private val context: Context) {
                     View.MeasureSpec.makeMeasureSpec(viewWidth, View.MeasureSpec.EXACTLY),
                     View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
                 )
-                val totalHeight = binding.profileRl.measuredHeight + scrollView.measuredHeight
+                val totalHeight = profileRl.measuredHeight + scrollView.measuredHeight
 
                 if (viewWidth <= 0 || totalHeight <= 0) {
                     Toast.makeText(relativeLayout.context, "Invalid dimensions for PDF", Toast.LENGTH_SHORT).show()
                     return@post
                 }
 
-                // تنظیم iText PDF
                 val directoryPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).path
                 val file = File(directoryPath, "$fileName.pdf")
-                val pdfWriter = PdfWriter(file)
-                val pdfDocument = PdfDocument(pdfWriter)
-                val document = Document(pdfDocument, PageSize.A4)
 
-                // رسم profileRl به عنوان صفحه اول
-                val profileBitmap = Bitmap.createBitmap(viewWidth, binding.profileRl.measuredHeight, Bitmap.Config.ARGB_8888)
-                val profileCanvas = Canvas(profileBitmap)
-                binding.profileRl.draw(profileCanvas)
-                val profileImageData = ImageDataFactory.create(profileBitmap.toByteArray())
-                val profileImage = Image(profileImageData)
-                document.add(profileImage)
+                try {
+                    val pdfWriter = PdfWriter(FileOutputStream(file))
+                    val pdfDocument = PdfDocument(pdfWriter)
+                    val document = Document(pdfDocument)
 
-                // رسم ScrollView به صورت صفحات بعدی
-                var currentHeight = 0
-                val pdfHeight = 1120
+                    // بخش اول: افزودن profileRl به عنوان صفحه اول
+                    val profileBitmap = Bitmap.createBitmap(viewWidth, profileRl.measuredHeight, Bitmap.Config.ARGB_8888)
+                    val profileCanvas = Canvas(profileBitmap)
+                    profileRl.draw(profileCanvas)
 
-                while (currentHeight < scrollView.measuredHeight) {
-                    val pageBitmap = Bitmap.createBitmap(viewWidth, pdfHeight, Bitmap.Config.ARGB_8888)
-                    val pageCanvas = Canvas(pageBitmap)
+                    val profileImage = Image(com.itextpdf.io.image.ImageDataFactory.create(profileBitmap.toByteArray()))
+                    profileImage.setWidth(UnitValue.createPercentValue(100f))
+                    document.add(profileImage)
 
-                    pageCanvas.translate(0f, -currentHeight.toFloat())
-                    scrollView.draw(pageCanvas)
+                    // بخش دوم: افزودن عناصر اسکرول ویو به صفحات بعدی بدون فاصله
+                    val pdfHeight = 1120
+                    var currentHeight = 0
 
-                    val pageImageData = ImageDataFactory.create(pageBitmap.toByteArray())
-                    val pageImage = Image(pageImageData)
-                    document.add(pageImage)
+                    // دریافت محتوای ScrollView به صورت دقیق و حذف فاصله‌ها
+                    for (i in 0 until linearLayout.childCount) {
+                        val item = linearLayout.getChildAt(i)
+                        item.measure(
+                            View.MeasureSpec.makeMeasureSpec(viewWidth, View.MeasureSpec.EXACTLY),
+                            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+                        )
+                        item.layout(0, 0, item.measuredWidth, item.measuredHeight)
 
-                    currentHeight += pdfHeight
+                        // محاسبه ارتفاع دقیق این عنصر
+                        val itemHeight = item.measuredHeight
+                        var itemCurrentHeight = 0
+
+                        while (itemCurrentHeight < itemHeight) {
+                            val pageHeight = minOf(pdfHeight, itemHeight - itemCurrentHeight)
+
+                            val pageBitmap = Bitmap.createBitmap(viewWidth, pageHeight, Bitmap.Config.ARGB_8888)
+                            val pageCanvas = Canvas(pageBitmap)
+                            pageCanvas.translate(0f, -itemCurrentHeight.toFloat())
+                            item.draw(pageCanvas)
+
+                            val pageImage = Image(com.itextpdf.io.image.ImageDataFactory.create(pageBitmap.toByteArray()))
+                            pageImage.setWidth(UnitValue.createPercentValue(100f))
+                            document.add(pageImage)
+
+                            itemCurrentHeight += pageHeight
+                        }
+                    }
+
+                    document.close()
+                    pdfDocument.close()
+                    Toast.makeText(relativeLayout.context, "PDF created successfully at: ${file.absolutePath}", Toast.LENGTH_SHORT).show()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    Toast.makeText(relativeLayout.context, "Error writing PDF: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
                 }
-
-                document.close()
-
-                Toast.makeText(relativeLayout.context, "PDF created successfully at: ${file.absolutePath}", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-
+    // Extension to convert Bitmap to ByteArray
+    fun Bitmap.toByteArray(): ByteArray {
+        val stream = ByteArrayOutputStream()
+        this.compress(Bitmap.CompressFormat.PNG, 100, stream)
+        return stream.toByteArray()
+    }
 
 
 
@@ -259,9 +283,6 @@ class PdfGenerator(private val context: Context) {
 //        }
 //    }
 
-    fun createPDFFromView(view: View, fileName: String){
-
-    }
 //    fun createPDFFromView(view: View, fileName: String) {
 //        // ایجاد یک PdfDocument
 //        val document = PdfDocument()

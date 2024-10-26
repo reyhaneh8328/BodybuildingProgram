@@ -35,32 +35,35 @@
         android:layout_below="@id/toolbarRl"
         android:layout_above="@id/optionLl"
         android:background="@color/gray03">
+
         <RelativeLayout
             android:id="@+id/profileRl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="30dp"
-            android:background="@drawable/shape_rect01">
+            android:background="@android:drawable/editbox_background_normal"
+            android:paddingTop="30dp">
+
             <TextView
                 android:id="@+id/fullNameTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
-                android:text="Full Name"
                 android:drawableStart="@drawable/ic_person_gray"
                 android:drawablePadding="10dp"
+                android:text="Full Name"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:id="@+id/detailsLl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_below="@id/fullNameTv"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
                 <!--        Account  -->
                 <LinearLayout
                     android:layout_width="0dp"
@@ -68,24 +71,26 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="سن"
-                        android:textColor="@color/black"
                         android:drawableStart="@drawable/ic_age_gray"
                         android:drawablePadding="5dp"
-                        android:textSize="17sp"
+                        android:text="سن"
                         android:textAlignment="center"
-                        android:textStyle="bold"/>
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/ageTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="22"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textAlignment="center"/>
+                        android:textSize="15sp" />
                 </LinearLayout>
                 <!--        Member Since  -->
                 <LinearLayout
@@ -94,24 +99,26 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="قد"
                         android:drawableStart="@drawable/ic_height_gray"
                         android:drawablePadding="5dp"
+                        android:text="قد"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="17sp"
-                        android:textAlignment="center"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/heightTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="170"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textAlignment="center"/>
+                        android:textSize="15sp" />
                 </LinearLayout>
                 <!--        Favorite Books  -->
                 <LinearLayout
@@ -120,50 +127,54 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="وزن"
                         android:drawableStart="@drawable/ic_weight_gray"
                         android:drawablePadding="5dp"
+                        android:text="وزن"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
                         android:textSize="17sp"
-                        android:textAlignment="center"/>
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/weightTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="75"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textAlignment="center"/>
+                        android:textSize="15sp" />
                 </LinearLayout>
                 <!--        Account status  -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1.5"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="گروه خونی"
                         android:drawableStart="@drawable/ic_bloodtype_gray"
                         android:drawablePadding="5dp"
+                        android:text="گروه خونی"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
                         android:textSize="17sp"
-                        android:textAlignment="center"/>
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/bloodTypeTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="A+"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textAlignment="center"/>
+                        android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
@@ -198,23 +209,27 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
+
         <Button
             android:id="@+id/receivePdfBtn"
             android:layout_width="0dp"
             android:layout_height="?actionBarSize"
-            android:layout_weight="1"
-            android:text="دریافت pdf"
-            android:textSize="20sp"
             android:layout_marginStart="3dp"
-            android:layout_marginEnd="3dp"/>
+            android:layout_marginEnd="3dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
+            android:text="دریافت pdf"
+            android:textSize="20sp" />
+
         <Button
             android:id="@+id/addBtn"
             android:layout_width="0dp"
             android:layout_height="?actionBarSize"
-            android:layout_weight="1"
-            android:text="اضافه"
-            android:textSize="20sp"
             android:layout_marginStart="3dp"
-            android:layout_marginEnd="3dp"/>
+            android:layout_marginEnd="3dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
+            android:text="اضافه"
+            android:textSize="20sp" />
     </LinearLayout>
 </RelativeLayout>

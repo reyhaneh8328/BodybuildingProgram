@@ -56,8 +56,9 @@ class SupplementsAndVitaminActivity : AppCompatActivity() {
             }else{
                 alertDialog.dismiss()
                 val relativeLayout = binding.pdfRl
+                val recyclerView = binding.textRv
                 val pdfGenerator = PdfGenerator(this)
-                pdfGenerator.createPDFFromView(relativeLayout,namePdf)
+                pdfGenerator.createMultiPagePdfWithoutGap(relativeLayout,recyclerView,namePdf,binding.profileRl)
             }
         }
     }
