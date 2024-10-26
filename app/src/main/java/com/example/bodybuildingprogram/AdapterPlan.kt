@@ -36,14 +36,37 @@ class AdapterPlan: RecyclerView.Adapter<AdapterPlan.HolderPlan>{
         return planArrayList.size
     }
 
-    override fun onBindViewHolder(holder: HolderPlan, position: Int) {
-        val model = planArrayList[position]
+//    override fun onBindViewHolder(holder: HolderPlan, position: Int) {
+//        val model = planArrayList[position]
+//
+//        holder.typePlanTv.text = model.getTypePlan()
+//        holder.prePlanTv.text = model.getPrePlan()
+//        for (i in model.getTableList().indices){
+//            holder.tableLl.addView(model.getTableList()[i])
+//        }
+//        holder.infoPlanTv.text = "مدت تمرین : ${model.getTime()} ساعت / شدت تمرین : ${model.getIntensity()}% /استراحت بین هر ست : ${model.getRestTime()} / مکث در حرکات : ${model.getPauseTime()}"
+//    }
+override fun onBindViewHolder(holder: HolderPlan, position: Int) {
+    val model = planArrayList[position]
 
-        holder.typePlanTv.text = model.getTypePlan()
-        holder.prePlanTv.text = model.getPrePlan()
-        for (i in model.getTableList().indices){
-            holder.tableLl.addView(model.getTableList()[i])
+    // تنظیم متن‌های TextView
+    holder.typePlanTv.text = model.getTypePlan()
+    holder.prePlanTv.text = model.getPrePlan()
+
+    // اضافه کردن ویوهای جدید به `tableLl`
+    for (i in model.getTableList().indices) {
+        val tableItemView = model.getTableList()[i]
+
+        // چک کردن اینکه آیا ویو قبلاً والد دارد
+        if (tableItemView.parent != null) {
+            (tableItemView.parent as ViewGroup).removeView(tableItemView)
         }
-        holder.infoPlanTv.text = "مدت تمرین : ${model.getTime()} ساعت / شدت تمرین : ${model.getIntensity()}% /استراحت بین هر ست : ${model.getRestTime()} / مکث در حرکات : ${model.getPauseTime()}"
+
+        // اضافه کردن ویو به `tableLl`
+        holder.tableLl.addView(tableItemView)
     }
+
+    // تنظیم متن اطلاعات دیگر
+    holder.infoPlanTv.text = "مدت تمرین : ${model.getTime()} ساعت / شدت تمرین : ${model.getIntensity()}% / استراحت بین هر ست : ${model.getRestTime()} / مکث در حرکات : ${model.getPauseTime()}"
+}
 }

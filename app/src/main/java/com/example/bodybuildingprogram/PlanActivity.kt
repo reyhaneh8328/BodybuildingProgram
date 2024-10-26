@@ -12,6 +12,7 @@ import android.widget.TableRow
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.example.bodybuildingprogram.databinding.ActivityAddUserBinding
 import com.example.bodybuildingprogram.databinding.ActivityPlanBinding
 import com.example.bodybuildingprogram.databinding.DialogNamepdfBinding
 import com.example.bodybuildingprogram.databinding.DialogPlanBinding
@@ -236,8 +237,10 @@ class PlanActivity : AppCompatActivity() {
             }else{
                 alertDialog.dismiss()
                 val relativeLayout = binding.pdfRl
+                val recyclerView = binding.planRv
                 val pdfGenerator = PdfGenerator(this)
-                pdfGenerator.createPDFFromView(relativeLayout,namePdf)
+//                pdfGenerator.createPDFFromView(relativeLayout,namePdf)
+                pdfGenerator.createMultiPagePdfFromRelativeLayoutWithRecyclerView(relativeLayout,recyclerView,namePdf,binding)
             }
         }
     }

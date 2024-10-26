@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+//    id 'org.jetbrains.kotlin.kapt' version "2.0.21"
 }
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
@@ -39,16 +40,16 @@ android {
 }
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.core:core-ktx:1.13.1'
     implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     implementation("androidx.room:room-runtime:2.6.1")
     annotationProcessor("androidx.room:room-compiler:2.6.1")
 
-    // To use Kotlin annotation processing tool (kapt)
-    kapt("androidx.room:room-compiler:2.6.1")
+    kapt ("androidx.room:room-compiler:2.6.1")
+
 
     def lifecycle_version = "2.6.1" // یا آخرین نسخه موجود
 
@@ -63,6 +64,8 @@ dependencies {
 
 
     implementation("androidx.room:room-ktx:2.6.1")
+
+    implementation 'com.itextpdf:itext7-core:7.1.10'
 
 
     testImplementation 'junit:junit:4.13.2'
