@@ -240,7 +240,7 @@ class PlanActivity : AppCompatActivity() {
                 val recyclerView = binding.planRv
                 val pdfGenerator = PdfGenerator(this)
 //                pdfGenerator.createPDFFromView(relativeLayout,namePdf)
-                pdfGenerator.createMultiPagePdfFromRelativeLayoutWithRecyclerView(relativeLayout,recyclerView,namePdf,binding)
+                pdfGenerator.createMultiPagePdfWithoutGap(relativeLayout,recyclerView,namePdf,binding.profileRl)
             }
         }
     }
