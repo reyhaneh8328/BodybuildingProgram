@@ -190,67 +190,54 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/profileRl"
-        android:layout_marginTop="80dp">
+        android:layout_below="@id/profileRl">
 
         <LinearLayout
             android:id="@+id/planLl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+            <TextView
+                android:id="@+id/supplementsTv"
+                android:layout_width="145dp"
+                android:layout_height="145dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/shape_edittext02"
+                android:backgroundTint="@color/gray01"
+                android:gravity="center"
+                android:text="برنامه مکمل"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/supplementsTv"
-                    android:layout_width="145dp"
-                    android:layout_height="145dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/shape_edittext02"
-                    android:backgroundTint="@color/gray01"
-                    android:gravity="center"
-                    android:text="برنامه مکمل"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/vitaminTv"
-                    android:layout_width="145dp"
-                    android:layout_height="145dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/shape_edittext02"
-                    android:backgroundTint="@color/gray01"
-                    android:gravity="center"
-                    android:text="برنامه ویتامین"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
+            <TextView
+                android:id="@+id/vitaminTv"
+                android:layout_width="145dp"
+                android:layout_height="145dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_edittext02"
+                android:backgroundTint="@color/gray01"
+                android:gravity="center"
+                android:text="برنامه ویتامین"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/exerciseTv"
+                android:layout_width="145dp"
+                android:layout_height="145dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_edittext02"
+                android:backgroundTint="@color/gray01"
+                android:gravity="center"
+                android:text="تمرین"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
-<!-- ازه-->
-        <TextView
-            android:id="@+id/exerciseTv"
-            android:layout_width="145dp"
-            android:layout_height="145dp"
-            android:layout_below="@id/planLl"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/shape_edittext02"
-            android:backgroundTint="@color/gray01"
-            android:gravity="center"
-            android:text="تمرین"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+
+
     </RelativeLayout>
 </RelativeLayout>
