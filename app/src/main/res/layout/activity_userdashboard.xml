@@ -237,7 +237,7 @@
                     android:textStyle="bold" />
             </RelativeLayout>
         </LinearLayout>
-
+<!-- ازه-->
         <TextView
             android:id="@+id/exerciseTv"
             android:layout_width="145dp"
