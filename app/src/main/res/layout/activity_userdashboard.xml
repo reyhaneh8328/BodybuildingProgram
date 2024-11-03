@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/img_1"
-    tools:context=".UserdashboardActivity">
+    tools:context=".UserdashboardActivity"
+    android:layoutDirection="ltr">
 
     <RelativeLayout
         android:id="@+id/relativeLayout3"
