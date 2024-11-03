@@ -1,5 +1,6 @@
 package com.example.bodybuildingprogram
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -7,17 +8,14 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import com.example.bodybuildingprogram.databinding.ActivityAddUserBinding
 import com.example.bodybuildingprogram.databinding.ActivityPlanBinding
 import com.example.bodybuildingprogram.databinding.DialogNamepdfBinding
 import com.example.bodybuildingprogram.databinding.DialogPlanBinding
 import com.example.bodybuildingprogram.databinding.DialogTableBinding
-import com.example.bodybuildingprogram.databinding.DialogTextplanAddBinding
 
 class PlanActivity : AppCompatActivity() {
 
@@ -56,6 +54,7 @@ class PlanActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun deleteFromePlanArrayList() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("حذف")
@@ -73,12 +72,6 @@ class PlanActivity : AppCompatActivity() {
     }
 
     var tableList = ArrayList<ModelTable>()
-    var typePlanEt = ""
-    var prePlanEt = ""
-    var timeEt = 0
-    var intensityEt = 0
-    var restTimeEt = 0
-    var pauseTimeEt = 0
     private fun addPlan() {
         tableList.clear()
         val planAddBinding = DialogPlanBinding.inflate(LayoutInflater.from(this))
@@ -103,38 +96,49 @@ class PlanActivity : AppCompatActivity() {
             }
         }
         planAddBinding.submitBtn.setOnClickListener {
-            typePlanEt = planAddBinding.typePlanEt.text.toString().trim()
-            prePlanEt = planAddBinding.prePlanEt.text.toString().trim()
-            val time = planAddBinding.timeEt.text.toString().trim().toIntOrNull()
-            if (time!=null) timeEt = time
-            val intensity = planAddBinding.intensityEt.text.toString().trim().toIntOrNull()
-            if (intensity!=null) intensityEt = intensity
-            val restTime = planAddBinding.restTimeEt.text.toString().trim().toIntOrNull()
-            if (restTime!=null) restTimeEt = restTime
-            val pauseTime = planAddBinding.pauseTimeEt.text.toString().trim().toIntOrNull()
-            if (pauseTime!=null) pauseTimeEt = pauseTime
+//            var typePlanEt = ""
+//    var prePlanEt = ""
+//    var timeEt: Int = 0
+//    var intensityEt = 0
+//    var restTimeEt = 0
+//    var pauseTimeEt = 0
+
+            val typePlanEt = planAddBinding.typePlanEt.text.toString().trim()
+            val prePlanEt = planAddBinding.prePlanEt.text.toString().trim()
+            val timeEt = planAddBinding.timeEt.text.toString().trim().toIntOrNull()
+            val intensityEt = planAddBinding.intensityEt.text.toString().trim().toIntOrNull()
+            val restTimeEt = planAddBinding.restTimeEt.text.toString().trim().toIntOrNull()
+            val pauseTimeEt = planAddBinding.pauseTimeEt.text.toString().trim().toIntOrNull()
             if (typePlanEt.isEmpty()){
                 Toast.makeText(this, "ناحیه اعمال فشار جلسه را وارد کنید ...", Toast.LENGTH_SHORT).show()
             }else if (prePlanEt.isEmpty()){
                 Toast.makeText(this, "پیش تمرین را وارد کنید ...", Toast.LENGTH_SHORT).show()
             }else if (tableList.size == 0){
                 Toast.makeText(this, "تمرین ها را اضافه کنید ...", Toast.LENGTH_SHORT).show()
-            }else if (timeEt<=0){
+            }else if (timeEt == null || timeEt <= 0){
                 Toast.makeText(this, "زمان تمرین را وارد کنید ...", Toast.LENGTH_SHORT).show()
-            }else if (intensityEt<=0){
+            }else if (intensityEt == null || intensityEt <= 0){
                 Toast.makeText(this, "شدت تمرین را وارد کنید ...", Toast.LENGTH_SHORT).show()
-            }else if (restTimeEt<=0){
+            }else if (restTimeEt == null || restTimeEt <= 0){
                 Toast.makeText(this, "زمان استراحت را وارد کنید ...", Toast.LENGTH_SHORT).show()
-            }else if (pauseTimeEt<=0){
+            }else if (pauseTimeEt == null || pauseTimeEt <= 0){
                 Toast.makeText(this, "زمان مکث حرکات را وارد کنید ...", Toast.LENGTH_SHORT).show()
             }else{
                 alertDialog.dismiss()
-                submitAddPlan()
+                submitAddPlan(typePlanEt,prePlanEt,timeEt,intensityEt,restTimeEt,pauseTimeEt)
             }
         }
     }
 
-    private fun submitAddPlan() {
+    @SuppressLint("NotifyDataSetChanged")
+    private fun submitAddPlan(
+        typePlanEt: String,
+        prePlanEt: String,
+        timeEt: Int,
+        intensityEt: Int,
+        restTimeEt: Int,
+        pauseTimeEt: Int
+    ) {
         val tableRowList = ArrayList<TableRow>()
         val density = resources.displayMetrics.density
         val sizePadding = (5 * density).toInt()
@@ -148,13 +152,13 @@ class PlanActivity : AppCompatActivity() {
             val tableRow = TableRow(this)
             val textViews = arrayListOf<TextView>(TextView(this), TextView(this), TextView(this),TextView(this))
             textViews[0].text = "${tableList[i].getNamePlan()}"
-            textViews[0].layoutParams = TableRow.LayoutParams((0 * density).toInt(), TableRow.LayoutParams.WRAP_CONTENT, 3f)
-            textViews[1].text = "${tableList[i].getSetNumber()}"
-            textViews[1].layoutParams = TableRow.LayoutParams((0 * density).toInt(), TableRow.LayoutParams.WRAP_CONTENT, 1f)
+            textViews[0].layoutParams = TableRow.LayoutParams((0 * density).toInt(), TableRow.LayoutParams.MATCH_PARENT, 3f)
+            textViews[1].text = buildString { append(tableList[i].getSetNumber()) }
+            textViews[1].layoutParams = TableRow.LayoutParams((0 * density).toInt(), TableRow.LayoutParams.MATCH_PARENT, 1f)
             textViews[2].text = "${tableList[i].getSizeSet()}"
-            textViews[2].layoutParams = TableRow.LayoutParams((0 * density).toInt(), TableRow.LayoutParams.WRAP_CONTENT, 1f)
+            textViews[2].layoutParams = TableRow.LayoutParams((0 * density).toInt(), TableRow.LayoutParams.MATCH_PARENT, 1f)
             textViews[3].text = "${tableList[i].getDescription()}"
-            textViews[3].layoutParams = TableRow.LayoutParams((0 * density).toInt(), TableRow.LayoutParams.WRAP_CONTENT, 2f)
+            textViews[3].layoutParams = TableRow.LayoutParams((0 * density).toInt(), TableRow.LayoutParams.MATCH_PARENT, 2f)
             for (i in textViews.indices){
                 textViews[i].setBackgroundResource(background)
                 textViews[i].setTextSize(TypedValue.COMPLEX_UNIT_SP, 13F)
@@ -170,6 +174,7 @@ class PlanActivity : AppCompatActivity() {
 //        typePlanEt = "جلسه ${SessionNumber.values()[planArrayList.size-1]} / $typePlanEt"
         val model = ModelPlan(typePlanEt,prePlanEt,tableRowList,timeEt,intensityEt,restTimeEt,pauseTimeEt)
         planArrayList.add(model)
+        adapterPlan.notifyDataSetChanged()
         Toast.makeText(this, "اجرا شده****", Toast.LENGTH_SHORT).show()
     }
 
