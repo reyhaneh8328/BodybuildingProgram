@@ -189,7 +189,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/profileRl">
 
         <LinearLayout
@@ -197,13 +197,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:layout_centerInParent="true">
 
             <TextView
                 android:id="@+id/supplementsTv"
-                android:layout_width="145dp"
-                android:layout_height="145dp"
-                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/shape_edittext02"
                 android:backgroundTint="@color/gray01"
                 android:gravity="center"
@@ -214,8 +216,10 @@
 
             <TextView
                 android:id="@+id/vitaminTv"
-                android:layout_width="145dp"
-                android:layout_height="145dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/shape_edittext02"
                 android:backgroundTint="@color/gray01"
@@ -226,8 +230,10 @@
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/exerciseTv"
-                android:layout_width="145dp"
-                android:layout_height="145dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/shape_edittext02"
                 android:backgroundTint="@color/gray01"
