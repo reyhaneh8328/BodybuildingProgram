@@ -7,11 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.bodybuildingprogram.databinding.ActivityAddUserBinding
+import org.bouncycastle.util.Arrays
 
 class AddUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddUserBinding
     private lateinit var databaseConnection: AppDatabase
+    private val desiredArray = arrayOf("تناسب اندام","افزایش وزن","کاهش وزن")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +24,10 @@ class AddUserActivity : AppCompatActivity() {
 
         binding.backBtn.setOnClickListener {
             onBackPressed()
+        }
+
+        binding.desired.setOnClickListener{
+            desiredPickedDialog()
         }
 
         binding.bloodTypeTv.setOnClickListener {
@@ -41,6 +47,7 @@ class AddUserActivity : AppCompatActivity() {
         val age = binding.ageEt.text.toString().trim().toIntOrNull()
         val height = binding.heightEt.text.toString().trim().toIntOrNull()
         val weight = binding.weightEt.text.toString().trim().toIntOrNull()
+        val desired = binding.desired.text.toString().trim()
         val typeBlood = binding.bloodTypeTv.text.toString().trim()
         if (firstName.isEmpty()){
             Toast.makeText(this, "نام ورزشکار را وارد کنید ...", Toast.LENGTH_SHORT).show()
@@ -52,10 +59,12 @@ class AddUserActivity : AppCompatActivity() {
             Toast.makeText(this, "قد ورزشکار را به درستی وارد کنید ...", Toast.LENGTH_SHORT).show()
         }else if (weight == null || weight < 0){
             Toast.makeText(this, "وزن ورزشکار را به درستی وارد کنید ...", Toast.LENGTH_SHORT).show()
-        } else if (typeBlood.isEmpty()){
+        }else if (desired.isEmpty()){
+            Toast.makeText(this, "نوع تغییر ورزشکار را وارد کنید ...", Toast.LENGTH_SHORT).show()
+        }else if (typeBlood.isEmpty()){
             Toast.makeText(this, "گروه خونی ورزشکار را انتخاب کنید ...", Toast.LENGTH_SHORT).show()
         }else{
-            val user: User = User(firstName,lastName,age,height,weight,typeBlood)
+            val user: User = User(firstName,lastName,age,height,weight,desired,typeBlood)
             createUser(user)
         }
     }
@@ -82,6 +91,17 @@ class AddUserActivity : AppCompatActivity() {
             .setItems(bloodTypeArray){dialog,which->
                 selectedBloodType = bloodTypeArray[which].toString()
                 binding.bloodTypeTv.text = selectedBloodType
+            }
+            .show()
+    }
+
+    private var selectedDisired = ""
+    private fun desiredPickedDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Pick Desired")
+            .setItems(desiredArray){dialog,which->
+                selectedDisired = desiredArray[which]
+                binding.desired.text = selectedDisired
             }
             .show()
     }

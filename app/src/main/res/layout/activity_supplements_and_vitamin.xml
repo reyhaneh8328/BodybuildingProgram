@@ -40,8 +40,7 @@
             android:id="@+id/profileRl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/editbox_background_normal"
-            android:paddingTop="30dp">
+            android:background="@android:drawable/editbox_background_normal">
 
             <TextView
                 android:id="@+id/fullNameTv"
@@ -55,12 +54,25 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+            <TextView
+                android:id="@+id/desiredTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fullNameTv"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="6dp"
+                android:drawableStart="@drawable/ic_weight_gray"
+                android:drawablePadding="10dp"
+                android:text="Desired"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:id="@+id/detailsLl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/fullNameTv"
+                android:layout_below="@id/desiredTv"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal">

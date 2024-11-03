@@ -171,7 +171,7 @@
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+    <TextView
         android:id="@+id/desired"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -183,10 +183,13 @@
         android:layout_marginEnd="0dp"
         android:background="@drawable/shape_edittext01"
         android:drawableStart="@drawable/ic_weight_gray"
+        android:drawableEnd="@drawable/ic_down_gray"
         android:drawablePadding="10dp"
-        android:hint="وزن دلخواه"
-        android:inputType="textMultiLine|textCapSentences"
-        android:padding="7dp"
+        android:hint="حالت تغییر"
+        android:paddingStart="15dp"
+        android:paddingTop="7dp"
+        android:paddingEnd="7dp"
+        android:paddingBottom="7dp"
         android:textColor="@color/black"
         android:textColorHint="@color/gray01"
         android:textSize="20sp" />

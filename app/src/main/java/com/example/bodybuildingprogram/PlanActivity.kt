@@ -254,6 +254,7 @@ class PlanActivity : AppCompatActivity() {
         val userViewModel = UserViewModel(DatabaseConnection.getInstance(this).userDao())
         userViewModel.getUserById(userId).observe(this, Observer { user->
             binding.fullNameTv.text = "${user.getFirstName()} ${user.getLastName()}"
+            binding.desiredTv.text = user.getDesired()
             binding.ageTv.text = "${user.getAge()}"
             binding.heightTv.text = "${user.getHeight()}"
             binding.weightTv.text = "${user.getWeight()}"

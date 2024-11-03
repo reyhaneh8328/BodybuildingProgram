@@ -20,6 +20,8 @@ import androidx.room.PrimaryKey
     private var height: Int = 0
     @ColumnInfo(name = "weight")
     private var weight: Int = 0
+    @ColumnInfo(name = "desired")
+    private var desired: String = ""
     @ColumnInfo(name = "blood_type")
     private var bloodType: String = ""
 
@@ -29,6 +31,7 @@ import androidx.room.PrimaryKey
         age: Int,
         height: Int,
         weight: Int,
+        desired: String,
         bloodType: String
     ) {
         this.firstName = firstName
@@ -36,6 +39,7 @@ import androidx.room.PrimaryKey
         this.age = age
         this.height = height
         this.weight = weight
+        this.desired = desired
         this.bloodType = bloodType
     }
 
@@ -74,6 +78,12 @@ import androidx.room.PrimaryKey
     }
     fun setWeight(weight: Int){
         this.weight = weight
+    }
+    fun getDesired(): String{
+        return this.desired
+    }
+    fun setDesired(desired: String){
+        this.desired = desired
     }
     fun getBloodType(): String{
         return this.bloodType
