@@ -97,13 +97,6 @@ class PlanActivity : AppCompatActivity() {
             }
         }
         planAddBinding.submitBtn.setOnClickListener {
-//            var typePlanEt = ""
-//    var prePlanEt = ""
-//    var timeEt: Int = 0
-//    var intensityEt = 0
-//    var restTimeEt = 0
-//    var pauseTimeEt = 0
-
             val typePlanEt = planAddBinding.typePlanEt.text.toString().trim()
             val prePlanEt = planAddBinding.prePlanEt.text.toString().trim()
             val timeEt = planAddBinding.timeEt.text.toString().trim().toIntOrNull()
@@ -172,7 +165,6 @@ class PlanActivity : AppCompatActivity() {
             type = 1 - type
 
         }
-//        typePlanEt = "جلسه ${SessionNumber.values()[planArrayList.size-1]} / $typePlanEt"
         val model = ModelPlan(typePlanEt,prePlanEt,tableRowList,timeEt,intensityEt,restTimeEt,pauseTimeEt)
         planArrayList.add(model)
         adapterPlan.notifyDataSetChanged()
@@ -194,6 +186,7 @@ class PlanActivity : AppCompatActivity() {
             .setCanceledOnTouchOutside(false)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun addToTableList(sizeTableTv: TextView) {
         val tableAddBinding = DialogTableBinding.inflate(LayoutInflater.from(this))
         val builder = AlertDialog.Builder(this, R.style.CustomDialog)
@@ -221,7 +214,6 @@ class PlanActivity : AppCompatActivity() {
                 val modelTable = ModelTable(namePlan,setNumber,sizeSet,description)
                 tableList.add(modelTable)
                 sizeTableTv.text = "تعداد تمرین = ${tableList.size}"
-                Toast.makeText(this, "amer", Toast.LENGTH_SHORT).show()
             }
         }
     }

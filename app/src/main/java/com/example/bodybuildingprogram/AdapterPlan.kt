@@ -1,5 +1,6 @@
 package com.example.bodybuildingprogram
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -46,11 +47,12 @@ class AdapterPlan: RecyclerView.Adapter<AdapterPlan.HolderPlan>{
 //        }
 //        holder.infoPlanTv.text = "مدت تمرین : ${model.getTime()} ساعت / شدت تمرین : ${model.getIntensity()}% /استراحت بین هر ست : ${model.getRestTime()} / مکث در حرکات : ${model.getPauseTime()}"
 //    }
+@SuppressLint("SetTextI18n")
 override fun onBindViewHolder(holder: HolderPlan, position: Int) {
     val model = planArrayList[position]
 
     // تنظیم متن‌های TextView
-    holder.typePlanTv.text = model.getTypePlan()
+    holder.typePlanTv.text = "جلسه ${SessionNumber.entries[planArrayList.size]} / ${model.getTypePlan()}"
     holder.prePlanTv.text = model.getPrePlan()
 
     // اضافه کردن ویوهای جدید به `tableLl`
@@ -67,6 +69,6 @@ override fun onBindViewHolder(holder: HolderPlan, position: Int) {
     }
 
     // تنظیم متن اطلاعات دیگر
-    holder.infoPlanTv.text = "مدت تمرین : ${model.getTime()} ساعت / شدت تمرین : ${model.getIntensity()}% / استراحت بین هر ست : ${model.getRestTime()} / مکث در حرکات : ${model.getPauseTime()}"
+    holder.infoPlanTv.text = "مدت تمرین : ${model.getTime()} ساعت / شدت تمرین : %${model.getIntensity()} / استراحت بین هر ست : ${model.getRestTime()} ثانیه / مکث در حرکات : ${model.getPauseTime()} ثانیه"
 }
 }
