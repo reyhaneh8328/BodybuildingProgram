@@ -46,7 +46,7 @@ class PlanActivity : AppCompatActivity() {
             generatePdf()
         }
         binding.deleteBtn.setOnClickListener {
-            if (planArrayList.size == 0){
+            if (planArrayList.isEmpty()){
                 Toast.makeText(this, "موردی برای حذف وجود ندارد!!", Toast.LENGTH_SHORT).show()
             }else{
                 deleteFromePlanArrayList()
@@ -60,7 +60,7 @@ class PlanActivity : AppCompatActivity() {
         builder.setTitle("حذف")
             .setMessage("آیا مطمئن هستید که می خواهید آخرین مورد را حذف کنید؟")
             .setPositiveButton("تایید") { a, d ->
-                planArrayList.removeLast()
+                planArrayList.removeAt(planArrayList.lastIndex)
                 adapterPlan.notifyDataSetChanged()
                 Toast.makeText(this, "حذف شد", Toast.LENGTH_SHORT).show()
             }
@@ -72,6 +72,7 @@ class PlanActivity : AppCompatActivity() {
     }
 
     var tableList = ArrayList<ModelTable>()
+    @SuppressLint("SetTextI18n")
     private fun addPlan() {
         tableList.clear()
         val planAddBinding = DialogPlanBinding.inflate(LayoutInflater.from(this))
@@ -86,10 +87,10 @@ class PlanActivity : AppCompatActivity() {
 
         planAddBinding.backBtn.setOnClickListener { alertDialog.dismiss() }
         planAddBinding.addBtn.setOnClickListener {
-            addToTableList()
+            addToTableList(planAddBinding.sizeTableTv)
         }
         planAddBinding.deleteBtn.setOnClickListener {
-            if (tableList.size == 0){
+            if (tableList.isEmpty()){
                 Toast.makeText(this, "موردی برای حذف وجود ندارد!!", Toast.LENGTH_SHORT).show()
             }else{
                 deleteFromTableList()
@@ -113,7 +114,7 @@ class PlanActivity : AppCompatActivity() {
                 Toast.makeText(this, "ناحیه اعمال فشار جلسه را وارد کنید ...", Toast.LENGTH_SHORT).show()
             }else if (prePlanEt.isEmpty()){
                 Toast.makeText(this, "پیش تمرین را وارد کنید ...", Toast.LENGTH_SHORT).show()
-            }else if (tableList.size == 0){
+            }else if (tableList.isEmpty()){
                 Toast.makeText(this, "تمرین ها را اضافه کنید ...", Toast.LENGTH_SHORT).show()
             }else if (timeEt == null || timeEt <= 0){
                 Toast.makeText(this, "زمان تمرین را وارد کنید ...", Toast.LENGTH_SHORT).show()
@@ -151,13 +152,13 @@ class PlanActivity : AppCompatActivity() {
             }
             val tableRow = TableRow(this)
             val textViews = arrayListOf<TextView>(TextView(this), TextView(this), TextView(this),TextView(this))
-            textViews[0].text = "${tableList[i].getNamePlan()}"
+            textViews[0].text = tableList[i].getNamePlan()
             textViews[0].layoutParams = TableRow.LayoutParams((0 * density).toInt(), TableRow.LayoutParams.MATCH_PARENT, 3f)
             textViews[1].text = buildString { append(tableList[i].getSetNumber()) }
             textViews[1].layoutParams = TableRow.LayoutParams((0 * density).toInt(), TableRow.LayoutParams.MATCH_PARENT, 1f)
-            textViews[2].text = "${tableList[i].getSizeSet()}"
+            textViews[2].text = tableList[i].getSizeSet()
             textViews[2].layoutParams = TableRow.LayoutParams((0 * density).toInt(), TableRow.LayoutParams.MATCH_PARENT, 1f)
-            textViews[3].text = "${tableList[i].getDescription()}"
+            textViews[3].text = tableList[i].getDescription()
             textViews[3].layoutParams = TableRow.LayoutParams((0 * density).toInt(), TableRow.LayoutParams.MATCH_PARENT, 2f)
             for (i in textViews.indices){
                 textViews[i].setBackgroundResource(background)
@@ -183,7 +184,7 @@ class PlanActivity : AppCompatActivity() {
         builder.setTitle("حذف")
             .setMessage("آیا مطمئن هستید که می خواهید آخرین مورد را حذف کنید؟")
             .setPositiveButton("تایید") { a, d ->
-                tableList.removeLast()
+                tableList.removeAt(tableList.lastIndex)
                 Toast.makeText(this, "حذف شد", Toast.LENGTH_SHORT).show()
             }
             .setNegativeButton("لغو") { a, d ->
@@ -193,7 +194,7 @@ class PlanActivity : AppCompatActivity() {
             .setCanceledOnTouchOutside(false)
     }
 
-    private fun addToTableList() {
+    private fun addToTableList(sizeTableTv: TextView) {
         val tableAddBinding = DialogTableBinding.inflate(LayoutInflater.from(this))
         val builder = AlertDialog.Builder(this, R.style.CustomDialog)
         builder.setView(tableAddBinding.root)
@@ -219,6 +220,8 @@ class PlanActivity : AppCompatActivity() {
                 alertDialog.dismiss()
                 val modelTable = ModelTable(namePlan,setNumber,sizeSet,description)
                 tableList.add(modelTable)
+                sizeTableTv.text = "تعداد تمرین = ${tableList.size}"
+                Toast.makeText(this, "amer", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -255,6 +258,7 @@ class PlanActivity : AppCompatActivity() {
         binding.planRv.adapter = adapterPlan
     }
 
+    @SuppressLint("SetTextI18n")
     private fun loadDataUser() {
         val userViewModel = UserViewModel(DatabaseConnection.getInstance(this).userDao())
         userViewModel.getUserById(userId).observe(this, Observer { user->
