@@ -107,6 +107,7 @@
         android:layout_below="@id/descriptionTil"
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_button03"
+        app:backgroundTint="@color/black"
         android:text="ثبت"
         android:textSize="22sp"
         android:textStyle="bold"/>

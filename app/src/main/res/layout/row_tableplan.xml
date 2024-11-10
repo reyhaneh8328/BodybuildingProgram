@@ -64,50 +64,54 @@
             android:divider="?android:attr/dividerHorizontal"
             android:showDividers="middle">
             <TableRow >
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
+                    android:background="@drawable/shape_table01"
+                    android:padding="5dp"
                     android:text="تمرین"
-                    android:background="@drawable/shape_table01"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:padding="5dp"/>
+                    android:textColor="@color/gray03"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/shape_table01"
+                    android:padding="5dp"
                     android:text="ست"
-                    android:background="@drawable/shape_table01"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:padding="5dp"/>
+                    android:textColor="@color/gray04"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="تعداد"
                     android:background="@drawable/shape_table01"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
+                    android:padding="5dp"
+                    android:text="تعداد"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:padding="5dp"/>
+                    android:textColor="@color/gray03"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="توضیجات"
                     android:background="@drawable/shape_table01"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
+                    android:padding="5dp"
+                    android:text="توضیجات"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:padding="5dp"/>
+                    android:textColor="@color/gray04"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
             </TableRow>
         </TableLayout>
 

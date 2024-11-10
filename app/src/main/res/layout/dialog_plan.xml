@@ -74,6 +74,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            app:backgroundTint="@color/black"
             android:text="حذف"
             android:textSize="17sp"
             android:textColor="@color/white"/>
@@ -91,6 +92,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            app:backgroundTint="@color/black"
             android:text="اضافه"
             android:textSize="17sp"
             android:textColor="@color/white"/>
@@ -184,6 +186,7 @@
         android:layout_below="@id/restPauseLl"
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_button03"
+        app:backgroundTint="@color/black"
         android:text="ثبت"
         android:textSize="22sp"
         android:textStyle="bold"/>

@@ -50,6 +50,7 @@
         android:layout_below="@id/nameTil"
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_button03"
+        app:backgroundTint="@color/black"
         android:text="ثبت"
         android:textSize="25sp"
         android:textStyle="bold"/>
