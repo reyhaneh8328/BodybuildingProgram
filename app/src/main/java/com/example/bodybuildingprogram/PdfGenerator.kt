@@ -31,6 +31,7 @@ import com.itextpdf.kernel.pdf.PdfWriter
 import com.itextpdf.layout.Document
 import com.itextpdf.layout.element.Image
 import com.itextpdf.layout.property.UnitValue
+import org.bouncycastle.util.Objects
 import java.io.ByteArrayOutputStream
 
 
@@ -41,7 +42,7 @@ class PdfGenerator(private val context: Context) {
         relativeLayout: RelativeLayout,
         recyclerView: RecyclerView,
         fileName: String,
-        profileRl : RelativeLayout
+        profileRl: View
     ) {
         relativeLayout.post {
             val viewWidth = recyclerView.width
