@@ -64,7 +64,7 @@
                 android:textSize="17sp"
                 android:hint="ست"
                 android:background="@drawable/shape_edittext01"
-                android:inputType="textCapSentences"/>
+                android:inputType="numberDecimal"/>
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/sizeSetTil"
@@ -80,7 +80,7 @@
                 android:textSize="17sp"
                 android:hint="تعداد"
                 android:background="@drawable/shape_edittext01"
-                android:inputType="textCapSentences"/>
+                android:inputType="numberDecimal"/>
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
     <com.google.android.material.textfield.TextInputLayout

@@ -52,7 +52,7 @@ override fun onBindViewHolder(holder: HolderPlan, position: Int) {
     val model = planArrayList[position]
 
     // تنظیم متن‌های TextView
-    holder.typePlanTv.text = "جلسه ${SessionNumber.entries[planArrayList.size]} / ${model.getTypePlan()}"
+    holder.typePlanTv.text = model.getTypePlan()
     holder.prePlanTv.text = model.getPrePlan()
 
     // اضافه کردن ویوهای جدید به `tableLl`

@@ -165,6 +165,7 @@ class PlanActivity : AppCompatActivity() {
             type = 1 - type
 
         }
+        val typePlanEt = "جلسه ${SessionNumber.entries[planArrayList.size]} / $typePlanEt"
         val model = ModelPlan(typePlanEt,prePlanEt,tableRowList,timeEt,intensityEt,restTimeEt,pauseTimeEt)
         planArrayList.add(model)
         adapterPlan.notifyDataSetChanged()
