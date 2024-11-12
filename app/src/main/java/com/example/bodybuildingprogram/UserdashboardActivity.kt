@@ -20,6 +20,12 @@ class UserdashboardActivity : AppCompatActivity() {
         userId = intent.getIntExtra("userId",0)
         loadDataUser()
 
+        binding.profileEditBtn.setOnClickListener{
+            val intent = Intent(this@UserdashboardActivity, ProfileActivity::class.java)
+            intent.putExtra("userId", userId)
+            this.startActivity(intent)
+        }
+
         binding.supplementsTv.setOnClickListener {
             val intent = Intent(this@UserdashboardActivity, SupplementsAndVitaminActivity::class.java)
             intent.putExtra("userId", userId)

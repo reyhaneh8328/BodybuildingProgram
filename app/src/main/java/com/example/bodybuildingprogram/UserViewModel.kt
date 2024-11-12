@@ -15,6 +15,12 @@ class UserViewModel(private val userDao: UserDao) : ViewModel() {
         }
     }
 
+    fun updateUser(user: User){
+        viewModelScope.launch{
+            userDao.updateUser(user)
+        }
+    }
+
     fun removeUser(user: User) {
         viewModelScope.launch {
             userDao.deleteUser(user)

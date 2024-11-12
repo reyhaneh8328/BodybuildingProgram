@@ -1,0 +1,144 @@
+package com.example.bodybuildingprogram
+
+import android.app.AlertDialog
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import com.example.bodybuildingprogram.databinding.ActivityProfileBinding
+
+class ProfileActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityProfileBinding
+    private lateinit var databaseConnection: AppDatabase
+    private val desiredArray = arrayOf("تناسب اندام","افزایش وزن","کاهش وزن")
+    private var userId = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivityProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        databaseConnection = DatabaseConnection.getInstance(this)
+
+        userId = intent.getIntExtra("userId",0)
+        loadDataUser()
+
+        binding.backBtn.setOnClickListener {
+            onBackPressed()
+        }
+
+        binding.desired.setOnClickListener{
+            desiredPickedDialog()
+        }
+
+        binding.bloodTypeTv.setOnClickListener {
+            bloodTypePickDialog()
+        }
+        binding.submitBtn.setOnClickListener {
+            /*  1)validate data
+                2)upload user to database storage
+                3)Get url of uploaded pdf
+                4)upload pdf info to firebase db  */
+            validateData()
+        }
+    }
+    private fun validateData() {
+        val firstName = binding.nameEt.text.toString().trim()
+        val lastName = binding.lastNameEt.text.toString().trim()
+        val age = binding.ageEt.text.toString().trim().toIntOrNull()
+        val height = binding.heightEt.text.toString().trim().toIntOrNull()
+        val weight = binding.weightEt.text.toString().trim().toIntOrNull()
+        val desired = binding.desired.text.toString().trim()
+        val typeBlood = binding.bloodTypeTv.text.toString().trim()
+        if (firstName.isEmpty()){
+            Toast.makeText(this, "نام ورزشکار را وارد کنید ...", Toast.LENGTH_SHORT).show()
+        } else if (lastName.isEmpty()){
+            Toast.makeText(this, "نام خانوادگی ورزشکار را وارد کنید ...", Toast.LENGTH_SHORT).show()
+        }else if (age == null || age < 0){
+            Toast.makeText(this, "سن ورزشکار را به درستی وارد کنید ...", Toast.LENGTH_SHORT).show()
+        }else if (height == null || height < 0){
+            Toast.makeText(this, "قد ورزشکار را به درستی وارد کنید ...", Toast.LENGTH_SHORT).show()
+        }else if (weight == null || weight < 0){
+            Toast.makeText(this, "وزن ورزشکار را به درستی وارد کنید ...", Toast.LENGTH_SHORT).show()
+        }else if (desired.isEmpty()){
+            Toast.makeText(this, "نوع تغییر ورزشکار را وارد کنید ...", Toast.LENGTH_SHORT).show()
+        }else if (typeBlood.isEmpty()){
+            Toast.makeText(this, "گروه خونی ورزشکار را انتخاب کنید ...", Toast.LENGTH_SHORT).show()
+        }else{
+            val user: User = User(firstName,lastName,age,height,weight,desired,typeBlood)
+            updateUser(user)
+        }
+    }
+    private fun updateUser(user: User) {
+        try {
+            val userViewModel = UserViewModel(databaseConnection.userDao())
+            userViewModel.getUserById(userId).observe(this, Observer { it ->
+                it.setFirstName(user.getFirstName())
+                it.setLastName(user.getLastName())
+                it.setAge(user.getAge())
+                it.setHeight(user.getHeight())
+                it.setWeight(user.getWeight())
+                it.setDesired(user.getDesired())
+                it.setBloodType(user.getBloodType())
+                userViewModel.updateUser(it)
+            })
+            Toast.makeText(this, "اطلاعات به روز شد", Toast.LENGTH_SHORT).show()
+        }catch (e: Exception){
+            Toast.makeText(this, "failled ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private var selectedBloodType = ""
+    private fun bloodTypePickDialog() {
+        val bloodType = BloodType.values()
+        var bloodTypeArray = arrayOfNulls<String>((bloodType.size)*2)
+        for (i in 0..(bloodType.size)-1){
+            bloodTypeArray[i] = "${bloodType[i]}-"
+            bloodTypeArray[i+4] = "${bloodType[i]}+"
+        }
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Pick Category")
+            .setItems(bloodTypeArray){dialog,which->
+                selectedBloodType = bloodTypeArray[which].toString()
+                binding.bloodTypeTv.text = selectedBloodType
+            }
+            .show()
+    }
+
+    private var selectedDisired = ""
+    private fun desiredPickedDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Pick Desired")
+            .setItems(desiredArray){dialog,which->
+                selectedDisired = desiredArray[which]
+                binding.desired.text = selectedDisired
+            }
+            .show()
+    }
+
+    private fun loadDataUser() {
+        val userViewModel = UserViewModel(DatabaseConnection.getInstance(this).userDao())
+        userViewModel.getUserById(userId).observe(this, Observer { user ->
+            binding.nameEt.setText(user.getFirstName())
+            binding.lastNameEt.setText(user.getLastName())
+            binding.desired.text = user.getDesired()
+            binding.ageEt.setText("${user.getAge()}")
+            binding.heightEt.setText("${user.getHeight()}")
+            binding.weightEt.setText("${user.getWeight()}")
+            binding.bloodTypeTv.text = user.getBloodType()
+        })
+//        userViewModel.getUserById(userId).observe(this, Observer { user ->
+//            user?.let {
+//                binding.nameEt.text = it.getFirstName()
+//                binding.lastNameEt.text = "${it.getLastName()}"
+//                binding.desired.text = it.getDesired()
+//                binding.ageEt.text = "${it.getAge()}"
+//                binding.heightEt.text = "${it.getHeight()}"
+//                binding.weightEt.text = "${it.getWeight()}"
+//                binding.bloodTypeTv.text = it.getBloodType()
+//            }
+//        })
+    }
+}

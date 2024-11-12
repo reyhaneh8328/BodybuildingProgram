@@ -16,6 +16,9 @@
         android:theme="@style/Theme.BodybuildingProgram"
         tools:targetApi="34">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".SupplementsAndVitaminActivity"
             android:exported="false" />
         <activity
