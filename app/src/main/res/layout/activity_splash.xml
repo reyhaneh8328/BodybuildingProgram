@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,11 +9,20 @@
     android:layoutDirection="ltr">
 
     <TextView
+        android:id="@+id/nameTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|left"
-        android:layout_margin="20dp"
+        android:layout_centerInParent="true"
         android:fontFamily="sans-serif-condensed"
-        android:text="AAG1.1.1"
+        android:text="AAG"
         android:textSize="20sp" />
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nameTv"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-condensed"
+        android:text="1.1.1"
+        android:textSize="20sp" />
+</RelativeLayout>
+<!--android:layout_gravity="bottom|left"-->

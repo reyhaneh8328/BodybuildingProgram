@@ -40,6 +40,7 @@
             android:layout_height="wrap_content"
             android:textSize="17sp"
             android:hint="ناحیه اعمال فشار جلسه"
+            android:textAlignment="center"
             android:background="@drawable/shape_edittext01"
             android:inputType="textMultiLine|textCapSentences"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -58,6 +59,7 @@
             android:layout_height="wrap_content"
             android:textSize="17sp"
             android:hint="پیش تمرین"
+            android:textAlignment="center"
             android:background="@drawable/shape_edittext01"
             android:inputType="textMultiLine|textCapSentences"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -118,6 +120,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
                 android:hint="مدت"
+                android:textAlignment="center"
                 android:background="@drawable/shape_edittext01"
                 android:inputType="numberDecimal"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -134,6 +137,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
                 android:hint="شدت"
+                android:textAlignment="center"
                 android:background="@drawable/shape_edittext01"
                 android:inputType="numberDecimal"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -158,6 +162,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
                 android:hint="استراحت"
+                android:textAlignment="center"
                 android:background="@drawable/shape_edittext01"
                 android:inputType="numberDecimal"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -174,6 +179,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
                 android:hint="مکث"
+                android:textAlignment="center"
                 android:background="@drawable/shape_edittext01"
                 android:inputType="numberDecimal"/>
         </com.google.android.material.textfield.TextInputLayout>
