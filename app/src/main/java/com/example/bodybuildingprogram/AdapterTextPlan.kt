@@ -1,5 +1,6 @@
 package com.example.bodybuildingprogram
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
@@ -37,6 +38,7 @@ class AdapterTextPlan: RecyclerView.Adapter<AdapterTextPlan.HolderTextPlan> {
         return textArrayList.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: HolderTextPlan, position: Int) {
         val model = textArrayList[position]
 

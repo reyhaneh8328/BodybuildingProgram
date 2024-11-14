@@ -45,30 +45,6 @@ class PlanActivity : AppCompatActivity() {
         binding.receivePdfBtn.setOnClickListener {
             generatePdf()
         }
-        binding.deleteBtn.setOnClickListener {
-            if (planArrayList.isEmpty()){
-                Toast.makeText(this, "موردی برای حذف وجود ندارد!!", Toast.LENGTH_SHORT).show()
-            }else{
-                deleteFromePlanArrayList()
-            }
-        }
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    private fun deleteFromePlanArrayList() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("حذف")
-            .setMessage("آیا مطمئن هستید که می خواهید آخرین مورد را حذف کنید؟")
-            .setPositiveButton("تایید") { a, d ->
-                planArrayList.removeAt(planArrayList.lastIndex)
-                adapterPlan.notifyDataSetChanged()
-                Toast.makeText(this, "حذف شد", Toast.LENGTH_SHORT).show()
-            }
-            .setNegativeButton("لغو") { a, d ->
-                a.dismiss()
-            }
-            .show()
-            .setCanceledOnTouchOutside(false)
     }
 
     var tableList = ArrayList<ModelTable>()
@@ -165,10 +141,11 @@ class PlanActivity : AppCompatActivity() {
             type = 1 - type
 
         }
-        val typePlanEt = "جلسه ${SessionNumber.entries[planArrayList.size]} / $typePlanEt"
+//        val typePlanEt = "جلسه ${SessionNumber.entries[planArrayList.size]} / $typePlanEt"
         val model = ModelPlan(typePlanEt,prePlanEt,tableRowList,timeEt,intensityEt,restTimeEt,pauseTimeEt)
         planArrayList.add(model)
         adapterPlan.notifyDataSetChanged()
+        tableList.clear()
         Toast.makeText(this, "اجرا شده****", Toast.LENGTH_SHORT).show()
     }
 
@@ -242,6 +219,7 @@ class PlanActivity : AppCompatActivity() {
                 val pdfGenerator = PdfGenerator(this)
 //                pdfGenerator.createPDFFromView(relativeLayout,namePdf)
                 pdfGenerator.createMultiPagePdfWithoutGap(relativeLayout,recyclerView,namePdf,binding.profileRl)
+//                pdfGenerator.createMultiPagePdfWithoutGap(relativeLayout,namePdf)
             }
         }
     }

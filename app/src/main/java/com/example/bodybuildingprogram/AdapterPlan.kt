@@ -1,10 +1,12 @@
 package com.example.bodybuildingprogram
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bodybuildingprogram.databinding.RowTableplanBinding
 
@@ -37,22 +39,12 @@ class AdapterPlan: RecyclerView.Adapter<AdapterPlan.HolderPlan>{
         return planArrayList.size
     }
 
-//    override fun onBindViewHolder(holder: HolderPlan, position: Int) {
-//        val model = planArrayList[position]
-//
-//        holder.typePlanTv.text = model.getTypePlan()
-//        holder.prePlanTv.text = model.getPrePlan()
-//        for (i in model.getTableList().indices){
-//            holder.tableLl.addView(model.getTableList()[i])
-//        }
-//        holder.infoPlanTv.text = "مدت تمرین : ${model.getTime()} ساعت / شدت تمرین : ${model.getIntensity()}% /استراحت بین هر ست : ${model.getRestTime()} / مکث در حرکات : ${model.getPauseTime()}"
-//    }
-@SuppressLint("SetTextI18n")
+@SuppressLint("SetTextI18n", "NotifyDataSetChanged")
 override fun onBindViewHolder(holder: HolderPlan, position: Int) {
     val model = planArrayList[position]
 
     // تنظیم متن‌های TextView
-    holder.typePlanTv.text = model.getTypePlan()
+    holder.typePlanTv.text = "جلسه ${SessionNumber.entries[position]} / ${model.getTypePlan()}"
     holder.prePlanTv.text = model.getPrePlan()
 
     // اضافه کردن ویوهای جدید به `tableLl`
@@ -70,5 +62,26 @@ override fun onBindViewHolder(holder: HolderPlan, position: Int) {
 
     // تنظیم متن اطلاعات دیگر
     holder.infoPlanTv.text = "مدت تمرین : ${model.getTime()} ساعت / شدت تمرین : %${model.getIntensity()} / استراحت بین هر ست : ${model.getRestTime()} ثانیه / مکث در حرکات : ${model.getPauseTime()} ثانیه"
+
+    holder.itemView.setOnLongClickListener{ modelTable ->
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("حذف")
+            .setMessage("آیا مطمئن هستید که می خواهید این مورد را حذف کنید؟")
+            .setPositiveButton("تایید") { a, d ->
+                for (i in model.getTableList().indices) {
+                    val tableItemView = model.getTableList()[i]
+                    holder.tableLl.removeView(tableItemView)
+                }
+                planArrayList.removeAt(position)
+                notifyDataSetChanged()
+                Toast.makeText(context, "حذف شد", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("لغو") { a, d ->
+                a.dismiss()
+            }
+            .show()
+            .setCanceledOnTouchOutside(false)
+        true
+    }
 }
 }
