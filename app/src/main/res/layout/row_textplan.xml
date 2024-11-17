@@ -28,12 +28,12 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/gray01"/>
+            android:background="@color/white01"/>
         <View
             android:layout_width="200dp"
             android:layout_height="2dp"
             android:layout_gravity="center"
-            android:background="@color/gray01"/>
+            android:background="@color/white01"/>
         <TextView
             android:id="@+id/descriptionTv"
             android:layout_width="match_parent"

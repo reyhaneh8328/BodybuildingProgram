@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray01"
+    android:background="@color/white01"
     tools:context=".AddUserActivity"
     android:layoutDirection="ltr">
 
@@ -68,7 +68,7 @@
             android:inputType="textPersonName|textCapWords"
             android:padding="7dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/gray01"
+            android:textColorHint="@color/white01"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +94,7 @@
             android:inputType="textMultiLine|textCapSentences"
             android:padding="7dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/gray01"
+            android:textColorHint="@color/white01"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,7 +120,7 @@
             android:inputType="numberDecimal"
             android:padding="7dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/gray01"
+            android:textColorHint="@color/white01"
             android:textSize="20sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -147,7 +147,7 @@
             android:inputType="numberDecimal"
             android:padding="7dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/gray01"
+            android:textColorHint="@color/white01"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -173,7 +173,7 @@
             android:inputType="numberDecimal"
             android:padding="7dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/gray01"
+            android:textColorHint="@color/white01"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -198,7 +198,7 @@
         android:paddingEnd="7dp"
         android:paddingBottom="7dp"
         android:textColor="@color/black"
-        android:textColorHint="@color/gray01"
+        android:textColorHint="@color/white01"
         android:textSize="20sp" />
 
     <TextView
@@ -220,7 +220,7 @@
         android:paddingEnd="7dp"
         android:paddingBottom="7dp"
         android:textColor="@color/black"
-        android:textColorHint="@color/gray01"
+        android:textColorHint="@color/white01"
         android:textSize="20sp" />
 
     <Button

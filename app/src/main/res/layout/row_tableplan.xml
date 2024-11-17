@@ -26,7 +26,7 @@
         <View
             android:layout_width="300dp"
             android:layout_height="2dp"
-            android:background="@color/gray01"
+            android:background="@color/white01"
             android:layout_gravity="center"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,7 +53,7 @@
         <View
             android:layout_width="300dp"
             android:layout_height="2dp"
-            android:background="@color/gray01"
+            android:background="@color/white01"
             android:layout_gravity="center"/>
         <TableLayout
             android:id="@+id/tableTl"
@@ -73,7 +73,7 @@
                     android:padding="5dp"
                     android:text="تمرین"
                     android:textAlignment="center"
-                    android:textColor="@color/gray03"
+                    android:textColor="@color/white02"
                     android:textSize="19sp"
                     android:textStyle="bold" />
 
@@ -85,7 +85,7 @@
                     android:padding="5dp"
                     android:text="ست"
                     android:textAlignment="center"
-                    android:textColor="@color/gray03"
+                    android:textColor="@color/white02"
                     android:textSize="19sp"
                     android:textStyle="bold" />
 
@@ -97,7 +97,7 @@
                     android:padding="5dp"
                     android:text="تعداد"
                     android:textAlignment="center"
-                    android:textColor="@color/gray03"
+                    android:textColor="@color/white02"
                     android:textSize="19sp"
                     android:textStyle="bold" />
 
@@ -109,7 +109,7 @@
                     android:padding="5dp"
                     android:text="توضیجات"
                     android:textAlignment="center"
-                    android:textColor="@color/gray03"
+                    android:textColor="@color/white02"
                     android:textSize="19sp"
                     android:textStyle="bold" />
             </TableRow>
