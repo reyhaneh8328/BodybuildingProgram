@@ -141,12 +141,13 @@ class PlanActivity : AppCompatActivity() {
             type = 1 - type
 
         }
-//        val typePlanEt = "جلسه ${SessionNumber.entries[planArrayList.size]} / $typePlanEt"
+
         val model = ModelPlan(typePlanEt,prePlanEt,tableRowList,timeEt,intensityEt,restTimeEt,pauseTimeEt)
         planArrayList.add(model)
         adapterPlan.notifyDataSetChanged()
         tableList.clear()
-        Toast.makeText(this, "اجرا شده****", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "مورد جدید اضافه شد", Toast.LENGTH_SHORT).show()
+        binding.planRv.scrollToPosition(planArrayList.size-1)
     }
 
     private fun deleteFromTableList() {
@@ -215,11 +216,8 @@ class PlanActivity : AppCompatActivity() {
             }else{
                 alertDialog.dismiss()
                 val relativeLayout = binding.pdfRl
-                val recyclerView = binding.planRv
-                val pdfGenerator = PdfGenerator(this)
-//                pdfGenerator.createPDFFromView(relativeLayout,namePdf)
-                pdfGenerator.createMultiPagePdfWithoutGap(relativeLayout,recyclerView,namePdf,binding.profileRl)
-//                pdfGenerator.createMultiPagePdfWithoutGap(relativeLayout,namePdf)
+                val pdfGenerator = PdfGenerator()
+                pdfGenerator.createMultiPagePdfWithoutGap(relativeLayout,namePdf,planArrayList)
             }
         }
     }

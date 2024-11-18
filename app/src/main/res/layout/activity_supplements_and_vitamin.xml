@@ -191,24 +191,30 @@
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
-        <TextView
-            android:id="@+id/titleTv"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/titleRl"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Plan"
-            android:textSize="20sp"
-            android:padding="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/shape_textview01"
-            android:textColor="@color/black"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/profileRl" />
+            android:layout_below="@id/profileRl">
+            <TextView
+                android:id="@+id/titleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Plan"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/shape_textview01"
+                android:textColor="@color/black"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/textRv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/titleTv"
+            android:layout_below="@id/titleRl"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"

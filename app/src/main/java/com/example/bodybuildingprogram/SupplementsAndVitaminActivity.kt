@@ -1,5 +1,6 @@
 package com.example.bodybuildingprogram
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -56,13 +57,13 @@ class SupplementsAndVitaminActivity : AppCompatActivity() {
             }else{
                 alertDialog.dismiss()
                 val relativeLayout = binding.pdfRl
-                val recyclerView = binding.textRv
-                val pdfGenerator = PdfGenerator(this)
-                pdfGenerator.createMultiPagePdfWithoutGap(relativeLayout,recyclerView,namePdf,binding.titleTv)
+                val pdfGenerator = PdfGenerator()
+                pdfGenerator.createMultiPagePdfWithoutGap(relativeLayout,namePdf,textPlanArrayList)
             }
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun addTextPlan() {
         val textPlanAddBinding = DialogTextplanAddBinding.inflate(LayoutInflater.from(this))
         val builder = AlertDialog.Builder(this, R.style.CustomDialog)
@@ -87,6 +88,9 @@ class SupplementsAndVitaminActivity : AppCompatActivity() {
                 alertDialog.dismiss()
                 val modelTextPlan = ModelTextPlan(nameText,descriptionText)
                 textPlanArrayList.add(modelTextPlan)
+                adapterTextPlan.notifyDataSetChanged()
+                Toast.makeText(this, "مورد جدید اضافه شد", Toast.LENGTH_SHORT).show()
+                binding.textRv.scrollToPosition(textPlanArrayList.size-1)
             }
         }
     }
@@ -96,6 +100,7 @@ class SupplementsAndVitaminActivity : AppCompatActivity() {
         binding.textRv.adapter = adapterTextPlan
     }
 
+    @SuppressLint("SetTextI18n")
     private fun loadDataUser() {
         val userViewModel = UserViewModel(DatabaseConnection.getInstance(this).userDao())
         userViewModel.getUserById(userId).observe(this, Observer { user->
@@ -107,8 +112,9 @@ class SupplementsAndVitaminActivity : AppCompatActivity() {
             binding.bloodTypeTv.text = user.getBloodType()
         })
     }
+    @SuppressLint("SetTextI18n")
     private fun loadTitle() {
         val title = intent.getStringExtra("title")
-        binding.titleTv.text = "$title روزانه باشگاه "
+        binding.titleTv.text = "${title} روزانه باشگاه "
     }
 }
