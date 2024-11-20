@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white02"
+    android:background="#DEDDDD"
     android:layoutDirection="ltr"
     tools:context=".UserdashboardActivity">
 
@@ -205,7 +205,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/profileRl">
+        android:layout_below="@id/profileRl"
+        android:background="#DCDBDB">
 
         <LinearLayout
             android:id="@+id/planLl"
@@ -222,7 +223,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/shape_edittext02"
-                android:backgroundTint="@color/white01"
+                android:backgroundTint="#FAFAFA"
                 android:gravity="center"
                 android:text="برنامه مکمل"
                 android:textAlignment="center"
@@ -237,7 +238,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/shape_edittext02"
-                android:backgroundTint="@color/white01"
+                android:backgroundTint="#FAF9F9"
                 android:gravity="center"
                 android:text="برنامه ویتامین"
                 android:textAlignment="center"
@@ -252,7 +253,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/shape_edittext02"
-                android:backgroundTint="@color/white01"
+                android:backgroundTint="#F6F2F2"
                 android:gravity="center"
                 android:text="تمرین"
                 android:textAlignment="center"

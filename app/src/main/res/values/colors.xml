@@ -4,10 +4,10 @@
     <color name="LightGreen500">#8BC34A</color>
     <color name="Lime900">#827717</color>
     <color name="white01">#c5c5c5</color>
-    <color name="white02">#EDEDED</color>
-    <color name="Gray">#7a7a7a</color>
-    <color name="Gainsboro">#DCDCDC</color>
-    <color name="LightGray">#cdcdcd</color>
+    <color name="white02">#FBF9F9</color>
+    <color name="Gray">#D9D9D9</color>
+    <color name="Gainsboro">#FDFAFA</color>
+    <color name="LightGray">#B3B1B1</color>
     <color name="white03">#FFFFFF</color>
     <color name="purple">#77637C</color>
     <color name="plum1">#B38192</color>

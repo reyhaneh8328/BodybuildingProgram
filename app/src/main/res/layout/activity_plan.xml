@@ -190,6 +190,7 @@
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/planRv"
             android:layout_width="match_parent"
@@ -199,6 +200,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
+            android:background="#C3C1C1"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/row_tableplan" />
     </RelativeLayout>
