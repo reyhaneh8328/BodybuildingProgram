@@ -30,7 +30,7 @@
             android:layout_width="300dp"
             android:layout_height="2dp"
             android:layout_gravity="center"
-            android:background="@color/white01" />
+            android:background="@color/Gray00" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -61,7 +61,7 @@
             android:layout_width="300dp"
             android:layout_height="2dp"
             android:layout_gravity="center"
-            android:background="@color/white01" />
+            android:background="@color/Gray00" />
 
         <TableLayout
             android:id="@+id/tableTl"
