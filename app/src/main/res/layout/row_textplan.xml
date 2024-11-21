@@ -1,52 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:contentPadding="10dp"
-    app:cardUseCompatPadding="true"
+    android:background="#EFECEC"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp"
-    app:cardBackgroundColor="@color/white">
+    app:cardUseCompatPadding="true"
+    app:contentPadding="10dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/nameSOVTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="نام مکمل یا ویتامین"
+            android:layout_gravity="center"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:layout_gravity="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:background="#D1D1D1"
+            android:text="نام مکمل یا ویتامین"
             android:textAlignment="center"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/Gray00"/>
+            android:background="@color/Gray00" />
+
         <View
             android:layout_width="200dp"
             android:layout_height="2dp"
             android:layout_gravity="center"
-            android:background="@color/Gray00"/>
+            android:background="@color/Gray00" />
+
         <TextView
             android:id="@+id/descriptionTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="توضیحات"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginTop="10dp"
             android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:background="#EDEAEA"
             android:maxLines="4"
-            android:textSize="17sp"
+            android:text="توضیحات"
             android:textAlignment="center"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="17sp" />
 
 
     </LinearLayout>
