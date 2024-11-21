@@ -39,15 +39,20 @@ class AdapterPlan: RecyclerView.Adapter<AdapterPlan.HolderPlan>{
         return planArrayList.size
     }
 
-@SuppressLint("SetTextI18n", "NotifyDataSetChanged")
-override fun onBindViewHolder(holder: HolderPlan, position: Int) {
+    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
+    override fun onBindViewHolder(holder: HolderPlan, position: Int) {
     val model = planArrayList[position]
 
     // تنظیم متن‌های TextView
     holder.typePlanTv.text = "جلسه ${SessionNumber.entries[position]} / ${model.getTypePlan()}"
     holder.prePlanTv.text = model.getPrePlan()
 
-    // اضافه کردن ویوهای جدید به `tableLl`
+    // اگر tableLl بیش از یک ویو دارد، فقط ویوهای بعدی را حذف کن
+    while (holder.tableLl.childCount > 1) {
+        holder.tableLl.removeViewAt(1) // حذف ویوهای بعد از اولین
+    }
+
+    // اضافه کردن ویوهای جدید به `tableLl` از ایندکس 1 به بعد
     for (i in model.getTableList().indices) {
         val tableItemView = model.getTableList()[i]
 
@@ -56,32 +61,34 @@ override fun onBindViewHolder(holder: HolderPlan, position: Int) {
             (tableItemView.parent as ViewGroup).removeView(tableItemView)
         }
 
-        // اضافه کردن ویو به `tableLl`
+        // اضافه کردن ویو از ایندکس 1 به بعد
         holder.tableLl.addView(tableItemView)
     }
 
     // تنظیم متن اطلاعات دیگر
     holder.infoPlanTv.text = "مدت تمرین : ${model.getTime()} ساعت / شدت تمرین : %${model.getIntensity()} / استراحت بین هر ست : ${model.getRestTime()} ثانیه / مکث در حرکات : ${model.getPauseTime()} ثانیه"
 
-    holder.itemView.setOnLongClickListener{ modelTable ->
+    holder.itemView.setOnLongClickListener {
         val builder = AlertDialog.Builder(context)
         builder.setTitle("حذف")
             .setMessage("آیا مطمئن هستید که می خواهید این مورد را حذف کنید؟")
-            .setPositiveButton("تایید") { a, d ->
-                for (i in model.getTableList().indices) {
-                    val tableItemView = model.getTableList()[i]
-                    holder.tableLl.removeView(tableItemView)
+            .setPositiveButton("تایید") { _, _ ->
+                // حذف همه ویوها به جز اولین
+                while (holder.tableLl.childCount > 1) {
+                    holder.tableLl.removeViewAt(1)
                 }
                 planArrayList.removeAt(position)
                 notifyDataSetChanged()
                 Toast.makeText(context, "حذف شد", Toast.LENGTH_SHORT).show()
             }
-            .setNegativeButton("لغو") { a, d ->
-                a.dismiss()
+            .setNegativeButton("لغو") { dialog, _ ->
+                dialog.dismiss()
             }
             .show()
             .setCanceledOnTouchOutside(false)
         true
     }
 }
+
+
 }
