@@ -73,6 +73,7 @@ class AddUserActivity : AppCompatActivity() {
             val userViewModel = UserViewModel(databaseConnection.userDao())
             userViewModel.addUser(user)
             Toast.makeText(this, "ورزشکار جدید ایجاد شد", Toast.LENGTH_SHORT).show()
+            onBackPressed()
         }catch (e: Exception){
             Toast.makeText(this, "failled ${e.message}", Toast.LENGTH_SHORT).show()
         }
