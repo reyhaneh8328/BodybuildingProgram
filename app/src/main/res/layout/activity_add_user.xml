@@ -32,7 +32,7 @@
             android:layout_height="110dp"
             android:layout_below="@+id/backBtn"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/logo"
+            android:src="@drawable/logoo"
             app:srcCompat="@drawable/logoo" />
 
         <TextView
